@@ -10,6 +10,7 @@ class Queue():
     def dequeue(self):
         if self.isEmpty():
             return None
+        self.size -= 1
         return self.queue.pop(0)
 
     def peek(self):
