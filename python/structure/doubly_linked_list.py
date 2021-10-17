@@ -14,7 +14,7 @@ class Node():
     def __repr__(self) -> str:
         return str(self)
 
-class DoubleLinkedList():
+class DoublyLinkedList():
     def __init__(self) -> None:
         self.head = None
         self.tail = None

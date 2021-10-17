@@ -27,26 +27,5 @@ class Queue():
     def __repr__(self) -> str:
         return str(self.queue)
 
-if __name__ == '__main__':
-    queue = Queue()
-    print(queue)
-    print('Dequeued:', queue.dequeue())
-    print('Peek:', queue.peek())
-    queue.enqueue(10)
-    queue.enqueue(20)
-    print('Peek:', queue.peek())
-    queue.enqueue(5)
-    queue.enqueue(7)
-    print(queue)
-    print('Dequeued:', queue.dequeue())
-    print(queue)
-    print('Dequeued:', queue.dequeue())
-    print('Peek:', queue.peek())
-    print(queue)
-    queue.enqueue(100)
-    queue.enqueue(1)
-    print('Peek:', queue.peek())
-    queue.enqueue(0)
-    print(queue.contains(100))
-    print(queue.contains(99))
-    print(queue)
+    def __str__(self) -> str:
+        return str(self.queue)
