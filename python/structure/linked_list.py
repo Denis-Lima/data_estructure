@@ -5,6 +5,12 @@ class Node():
         self.data = data
         self.next = None
 
+    def __str__(self) -> str:
+        next = str(self.next) if not self.next else str(self.next.data)
+        return str(self.data) + ' -> ' + next
+
+    def __repr__(self) -> str:
+        return str(self)
 class LinkedList():
     def __init__(self) -> None:
         self.head = None
@@ -15,14 +21,17 @@ class LinkedList():
 
     def __str__(self) -> str:
         string = []
-        node = self.head
-        while node:
+        node: Node = self.head
+        for i in range(self.size):
             string.append(str(node.data))
             node = node.next
         return '[' + ' -> '.join(string) + ']'
 
+    def __repr__(self) -> str:
+        return str(self)
+
     def get_node(self, index) -> Union[Node, None]:
-        if not len(self) or index >= len(self) or index < 0:
+        if self.empty() or index >= len(self) or index < 0:
             raise IndexError('Index is out of range')
 
         node = self.head
@@ -55,7 +64,7 @@ class LinkedList():
         self.size += 1
     
     def insert_last(self, data: Any) -> None:
-        if self.size == 0:
+        if self.empty():
             self.head = Node(data)
             self.size += 1
             return
@@ -68,7 +77,10 @@ class LinkedList():
         self.size += 1
 
     def get_first(self) -> Union[Any, None]:
-        return self.get(0)
+        first = self.head
+        if first:
+            return first.data
+        return first #None
 
     def get_last(self) -> Union[Any, None]:
         return self.get(self.size)
@@ -78,3 +90,38 @@ class LinkedList():
         if node:
             return node.data
         return node
+    
+    def empty(self) -> bool:
+        return self.size == 0
+
+    def items(self) -> Node:
+        current = self.head
+        while current:
+            yield current
+            current = current.next
+    
+    def remove_first(self) -> Node:
+        if self.empty():
+            raise IndexError('Index is out of range')
+        removed = self.head
+        self.head = self.head.next
+        removed.next = None
+        self.size -= 1
+        return removed
+    
+    def remove_last(self) -> Node:
+        return self.remove(self.size - 1)
+    
+    def remove(self, index: int) -> Node:
+        if index >= self.size:
+            raise IndexError('Index is out of range')
+        
+        if index == 0:
+            return self.remove_first()
+        
+        preview_node = self.get_node(index - 1)
+        removed = preview_node.next
+        if removed:
+            preview_node.next, removed.next = removed.next, None
+        self.size -= 1
+        return removed
