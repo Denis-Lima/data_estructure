@@ -101,36 +101,3 @@ class LinkedList():
         while current is not None:
             yield current.data
             current = current.next
-
-
-if __name__ == '__main__':
-    lista = LinkedList()
-    print('Is empty?', lista.empty())
-    print('Size:', len(lista))
-    lista.insert_at(0, 1)
-    lista.insert_at(0, 999)
-    print(lista)
-    lista.insert_first(50)
-    lista.insert_at(2, 600)
-    print(lista)
-
-    print('Removed(last):', lista.remove_at(len(lista) - 1))
-    print('Removed(first):', lista.remove_first())
-    print(lista)
-
-    lista.insert_at(1, 40)
-    lista.insert_at(2, 7)
-    print('First:', lista.get_first())
-    print('Last:', lista.get_last())
-    print('At 2:', lista.get(2))
-    print(lista)
-    print('Is empty?', lista.empty())
-    print('Size:', len(lista))
-
-    print('Iterating over items: ', end='')
-    for item in lista.items():
-        print(item, end=' ')
-
-    print('\nIterating over items2: ', end='')
-    for item in lista:
-        print(item, end=' ')
